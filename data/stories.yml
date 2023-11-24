@@ -1,0 +1,250 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+
+
+- story: User interrupts the Boat form and doesn't want to continue
+  steps:
+  - intent: request_boat
+  - action: utter_iamabot
+  - action: boat_form
+  - active_loop: boat_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: stop
+  - action: action_deactivate_loop
+  - active_loop: null
+
+# - story: interactive story 1 for boat
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: request_boat
+#   - action: utter_iamabot
+#   - action: boat_form
+#   - active_loop: boat_form
+
+#   - slot_was_set:
+#     - requested_slot: name
+#   - slot_was_set:
+#     - name: Sahib
+
+#   - slot_was_set:
+#     - requested_slot: email
+#   - slot_was_set:
+#     - email: sahib@gmail.com
+
+#   - slot_was_set:
+#     - requested_slot: password
+#   - slot_was_set:
+#     - email: jenny231
+
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_submit
+#   - action: action_boat_values
+
+
+
+
+- story: interactive story 2 for boat 
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: request_boat
+  - action: utter_iamabot
+  - action: boat_form
+  - active_loop: boat_form
+  
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: jason
+
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: jason@gmail.com
+
+  - slot_was_set:
+    - requested_slot: password
+  - slot_was_set:
+    - password: vbbn@2334
+
+  - slot_was_set:
+    - requested_slot: zip_code
+  - slot_was_set:
+    - zip_code: 123456
+
+  - slot_was_set:
+    - requested_slot: boat_manufacturer
+  - slot_was_set:
+    - boat_manufacturer: yamaha
+
+  
+  - slot_was_set:
+    - requested_slot: boat_model
+  - slot_was_set:
+    - boat_model: c1234
+  
+  - slot_was_set:
+    - requested_slot: year_manufactured
+  - slot_was_set:
+    - year_manufactured: 2003
+
+    
+  - slot_was_set:
+    - requested_slot: engine_manufacturer
+  - slot_was_set:
+    - engine_manufacturer: honda
+
+      
+  - slot_was_set:
+    - requested_slot: engine_model
+  - slot_was_set:
+    - engine_model: vbdf34
+
+        
+  - slot_was_set:
+    - requested_slot: hours_on_engine
+  - slot_was_set:
+    - hours_on_engine: 233
+  
+          
+  # - slot_was_set:
+  #   - requested_slot: last_maintainenance
+  # - slot_was_set:
+  #   - last_maintainenance: 2020
+
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_boat_values
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Demo stories below
+- story: User interrupts the form and doesn't want to continue
+  steps:
+  - intent: request_restaurant
+  - action: restaurant_form
+  - active_loop: restaurant_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: stop
+  - action: action_deactivate_loop
+  - active_loop: null
+
+
+- story: interactive story 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: request_restaurant
+  - action: restaurant_form
+  - active_loop: restaurant_form
+  - slot_was_set:
+    - requested_slot: cuisine
+  - slot_was_set:
+    - cuisine: salmon
+  - slot_was_set:
+    - requested_slot: num_people
+  - slot_was_set:
+    - num_people: 5
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_slots_values

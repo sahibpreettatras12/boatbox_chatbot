@@ -1,0 +1,240 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - request_boat
+  - request_restaurant
+  - stop
+  - ok
+
+
+actions:
+  - action_boat_values
+  - action_ask_last_maintainenance
+  - action_ask_hours_on_engine
+  - action_ask_engine_model
+  - action_ask_engine_manufacturer
+  - action_ask_year_manufactured
+  - action_ask_boat_manufacturer
+  - action_ask_boat_model
+  - action_ask_zip_code
+  - action_ask_password
+  - action_ask_email
+  - action_ask_name
+
+forms:
+  restaurant_form:
+    required_slots:
+        - cuisine
+        - num_people
+
+    # boat form
+  boat_form:
+    required_slots:
+      - name
+      - email
+      - password
+      - zip_code
+      - boat_manufacturer
+      - boat_model
+      - year_manufactured
+      - engine_manufacturer
+      - engine_model
+      - hours_on_engine
+      - last_maintainenance
+
+slots:
+  cuisine:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: restaurant_form
+          requested_slot: cuisine
+  
+  num_people:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: restaurant_form
+          requested_slot: num_people
+
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: name
+  
+  email:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: email
+
+  password:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: password
+
+  zip_code:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: zip_code
+  
+  boat_manufacturer:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: boat_manufacturer
+  
+  boat_model:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: boat_model
+  
+  year_manufactured:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: year_manufactured
+
+  engine_manufacturer:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: engine_manufacturer
+
+  engine_model:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: engine_model
+
+  hours_on_engine:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: hours_on_engine
+
+  last_maintainenance:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: boat_form
+          requested_slot: last_maintainenance
+  
+
+responses:
+
+  # utter_ask_last_maintainenance:
+  # - text: "pls pickup year of last maintainence"
+  # utter_ask_hours_on_engine:
+  # - text: "what are your total engine hours"
+  # utter_ask_engine_model:
+  # - text: "can i ask for engine model"
+  # utter_ask_engine_manufacturer:
+  # - text: "and your engine manufacturer"
+  # utter_ask_year_manufactured:
+  # - text: "Which year it was manufactured"
+  # utter_ask_boat_model:
+  # - text: "Pls what is your boat model year"
+  # utter_ask_boat_manufacturer:
+  # - text: "which boat manufacturer you are having"
+  # utter_ask_zip_code:
+  # - text: "What is your area zip code"
+  # utter_ask_password:
+  # - text: "Pls setup your passoword"
+  # utter_ask_email:
+  # - text: "what is your email address"
+  # utter_ask_name:
+  # - text: "WHat is your good name"
+
+
+  utter_ok:
+  - text: "Thanks for the response"
+  - text: "I have stored your response than"
+  utter_ask_continue:
+  - text: "do you want to continue"
+
+  utter_ask_cuisine:
+  - text: "what cuisine you are looking for?"
+
+  utter_ask_num_people:
+  - text: "how many num of people are there?"
+  
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "Yes definately I am here to help you with anything related to boats "
+
+
+  utter_submit:
+  - text: Ok. Thanks!
+  
+  # action_boat_values:
+  # - text: "I will remeber that your name is {name},{email} and password is in DB and {zip_code},{boat_manufacturer},
+  # {boat_model},{year_manufactured},{engine_manufacturer},{engine_model},{hours_on_engine} "
+  utter_slots_values:
+  - text: I will remember that your cuisne is {cuisine} {num_people}!
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
